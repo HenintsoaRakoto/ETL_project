@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{% block title %}ETL{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee&display=swap">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/Navbar-Right-Links-Dark-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Team-images.css' %}">
+</head>
+<body style="margin: 0px;">
+
+    <!-- Navbar Fixée en haut avec taille réduite -->
+    <nav class="navbar navbar-light navbar-expand-sm fixed-top bg-light" style="padding: 5px 10px;">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#"></a>
+            <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+                <span class="visually-hidden">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse fw-bold text-start text-primary" id="navcol-1" style="font-size: 18px; text-align: center;">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'etl:home' %}" style="text-align: left;">
+                            <i class="fa fa-home"></i> Accueil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/upload/' %}active{% endif %}" href="{% url 'etl:upload' %}">
+                            <i class="fa fa-upload"></i> Téléverse
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/tables/' %}active{% endif %}" href="{% url 'etl:tables' %}">
+                            <i class="fa fa-list-ul"></i> Tables existantes
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+        <!-- Le contenu des pages ira ici -->
+    {% endblock %}
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block title %}Tables ETL{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <div class="container" style="margin-top: 80px;">
+        <div class="container-fluid mt-4">
+            <div class="row">
+                <!-- Liste des tables à gauche -->
+                <div class="col-md-6">
+                    <div class="container">
+                        <h3 class="text-center mb-4">Tables dans la base de données</h3>
+
+                        <!-- Messages d'erreur ou de succès -->
+                        {% if messages %}
+                            <div class="container">
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                        <strong>{{ message }}</strong>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <div class="row">
+                            {% for table in tables_info %}
+                                <div class="col-md-6 mb-4">
+                                    <div class="card shadow-lg rounded border-0">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">
+                                                <a href="{% url 'etl:view_table' table.name %}" class="text-decoration-none text-dark">{{ table.name }}</a>
+                                            </h5>
+                                            <p class="card-text">🧱 Colonnes : {{ table.nb_columns }}</p>
+                                            <p class="card-text">📄 Lignes : {{ table.nb_rows }}</p>
+
+                                            <!-- Actions -->
+                                            <div class="d-flex justify-content-around mt-3">
+                                                <a href="{% url 'etl:view_table' table.name %}" class="btn btn-primary btn-sm">
+                                                    📖 Lire
+                                                </a>
+                                                <form method="post" action="{% url 'etl:delete_table' table.name %}" 
+                                                      onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer la table {{ table.name }} ?');">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="btn btn-danger btn-sm">🗑️ Supprimer</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% empty %}
+                                <p class="text-center">Aucune table trouvée.</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulaire de requêtes SQL à droite -->
+                <div class="col-md-6">
+                    <div class="container">
+                        <h3 class="text-center mb-4">Exécuter une requête SQL</h3>
+
+                        <form method="POST" action="{% url 'etl:execute_query' %}">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <!-- Zone de texte plus grande et plus stylée -->
+                                <textarea name="sql_query" class="form-control" placeholder="Écrivez votre requête SQL ici..." rows="6" style="resize: none;"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-success w-100">Exécuter</button>
+                        </form>
+
+                        {% if result %}
+                            <div class="mt-4">
+                                <h4 class="text-center">Résultats de la requête :</h4>
+                                <div style="max-height: 400px; overflow-y: auto;">
+                                    <table class="table table-bordered mt-3">
+                                        <thead class="thead-dark sticky-top">
+                                            <tr>
+                                                {% for col in columns %}
+                                                    <th>{{ col }}</th>
+                                                {% endfor %}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for row in result %}
+                                                <tr>
+                                                    {% for cell in row %}
+                                                        <td>{{ cell }}</td>
+                                                    {% endfor %}
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

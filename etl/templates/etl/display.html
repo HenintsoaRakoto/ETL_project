@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Données de la table - ETL{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Données de la table : <strong>{{ table_name }}</strong></h2>
+        
+        <div class="table-responsive shadow-sm rounded bg-light p-4">
+            <!-- Tableau des données -->
+            <table class="table table-striped table-hover table-bordered">
+                <thead class="thead-dark sticky-top">
+                    <tr>
+                        {% for col in columns %}
+                            <th>{{ col }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in rows %}
+                        <tr>
+                            {% for cell in row %}
+                                <td>{{ cell }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- Bouton "Retour aux tables" flottant -->
+    <div class="fixed-bottom d-flex justify-content-center mb-4">
+        <a href="{% url 'etl:tables' %}" class="btn btn-secondary btn-lg">Retour aux tables</a>
+    </div>
+{% endblock %}

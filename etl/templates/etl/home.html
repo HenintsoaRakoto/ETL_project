@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}Accueil ETL{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<div class="container" style="margin-top: 80px;">
+    <div class="container py-4 py-xl-5" style="max-width: 900px;height: auto;">
+        <!-- Section Présentation -->
+        <div class="text-center mb-5">
+            <img src="{% static 'assets/img/E_20250227_154210_0000.png'%}" class="img-fluid mb-4" style="width: 220px;">
+            <h1 class="display-5 fw-bold">Bienvenue sur notre plateforme ETL</h1>
+            <p class="lead">Une solution intuitive pour l'Extraction, la Transformation et le Chargement de vos données.</p>
+        </div>
+
+        <!-- Section Objectifs -->
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <h3 class="fw-semibold">Notre mission</h3>
+                <p>Nous avons conçu ce site dans le but de développer un programme ETL adapté aux besoins d’analyse de données en entreprise. Notre objectif est de fournir une solution intuitive, flexible et performante pour automatiser l’importation, le traitement et l’exploitation des données.</p>
+            </div>
+            <div class="col-md-6">
+                <h3 class="fw-semibold">Pourquoi ce projet ?</h3>
+                <p>Ce projet est aussi un espace d’apprentissage, de collaboration et d’innovation pour notre équipe de développeurs frontend et backend, testeurs et analystes. Il permet une conversion rapide des fichiers CSV ou Excel en tables consultables avec une visualisation claire.</p>
+            </div>
+        </div>
+
+        <!-- Section Fonctionnalités -->
+        <div class="text-center mb-5">
+            <h3 class="fw-bold">✨ Fonctionnalités principales</h3>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-3">
+                <div class="col">
+                    <div class="card h-100 shadow border-0 text-center p-3">
+                        <h5 class="card-title">📂 Importation</h5>
+                        <p class="card-text">Chargez des fichiers CSV ou Excel depuis votre ordinateur.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow border-0 text-center p-3">
+                        <h5 class="card-title">⚙️ Transformation</h5>
+                        <p class="card-text">Nettoyez, formatez et adaptez les colonnes de vos jeux de données.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow border-0 text-center p-3">
+                        <h5 class="card-title">🗄️ Chargement</h5>
+                        <p class="card-text">Stockage automatique dans des tables SQLite accessibles via l'interface admin.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow border-0 text-center p-3">
+                        <h5 class="card-title">👀 Visualisation</h5>
+                        <p class="card-text">Interface intuitive pour consulter les tables et les données en temps réel.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Équipe -->
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Notre Équipe</h2>
+            <p class="mb-4">Rencontrez les membres passionnés derrière ce projet.</p>
+            <div class="row row-cols-1 row-cols-md-4 g-4 d-flex">
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 text-center p-3">
+                        <img src="{% static 'assets/img/Alenn.jpg' %}" class="rounded-circle mx-auto d-block" width="80" height="80">
+                        <h5 class="mt-3">Alenn</h5>
+                        <p class="text-muted">Développeur Backend</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 text-center p-3">
+                        <img src="{% static 'assets/img/Angela.jpeg' %}" class="rounded-circle mx-auto d-block" width="80" height="80">
+                        <h5 class="mt-3">Angela</h5>
+                        <p class="text-muted">Designer UI/UX</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 text-center p-3">
+                        <img src="{% static 'assets/img/Flening.png' %}" class="rounded-circle mx-auto d-block" width="80" height="80">
+                        <h5 class="mt-3">Flening</h5>
+                        <p class="text-muted">Analyste Données</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 text-center p-3">
+                        <img src="{% static 'assets/img/henintsoa.jpg' %}" class="rounded-circle mx-auto d-block" width="80" height="80">
+                        <h5 class="mt-3">Henintsoa</h5>
+                        <p class="text-muted">Développeur Frontend</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
